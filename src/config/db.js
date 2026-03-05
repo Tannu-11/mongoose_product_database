@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const connectDb = async () => {
     // Hardcode your confirmed string here temporarily
-    const testUri = "mongodb+srv://tannusg06_db_user:NX8t3VBNjRVYq3Vu@cluster0.tbnvawk.mongodb.net/product_db?retryWrites=true&w=majority";
+    const testUri = "mongodb+srv://anu26dec2006_db_user:MRhjwMABcEsanejV@74nnu.u0zvfa6.mongodb.net/?appName=74nnu";
 
     try {
         await mongoose.connect(testUri);
