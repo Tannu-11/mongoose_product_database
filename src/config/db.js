@@ -2,16 +2,24 @@
 import mongoose from "mongoose";
 
 const connectDb = async () => {
-    // Hardcode your confirmed string here temporarily
-    const testUri = "mongodb+srv://anu26dec2006_db_user:MRhjwMABcEsanejV@74nnu.u0zvfa6.mongodb.net/?appName=74nnu";
-
     try {
-        await mongoose.connect(testUri);
-        console.log("✅ SUCCESS: MongoDB is finally connected!");
+        const uri = process.env.MONGODB_URI;
+
+        if (!uri) {
+            throw new Error("MONGODB_URI is not defined in environment variables");
+        }
+
+        await mongoose.connect(uri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+
+        console.log("✅ SUCCESS: MongoDB is connected!");
     } catch (error) {
-        console.error("❌ STILL FAILING:");
+        console.error("❌ MongoDB connection failed:");
         console.error("Error Name:", error.name);
         console.error("Error Message:", error.message);
+        process.exit(1);
     }
 };
 
